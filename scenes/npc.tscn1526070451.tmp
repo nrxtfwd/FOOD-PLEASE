@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://chnpqygrmmy6b"]
+
+[ext_resource type="Script" uid="uid://bf35p5fhaca51" path="res://scenes/npc.gd" id="1_abqhh"]
+[ext_resource type="Texture2D" uid="uid://dfqh50glnbm" path="res://assets/rect.png" id="1_nh2m4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abqhh"]
+size = Vector2(16, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abqhh"]
+bg_color = Color(0.446777, 0.44677705, 0.44677693, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rv78h"]
+bg_color = Color(0.89492244, 0.89492244, 0.8949224, 1)
+
+[sub_resource type="Theme" id="Theme_7n8xq"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_abqhh")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_rv78h")
+
+[node name="npc" type="CharacterBody2D" groups=["npc"]]
+scale = Vector2(2, 2)
+collision_layer = 5
+script = ExtResource("1_abqhh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nh2m4")
+
+[node name="col_shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_abqhh")
+
+[node name="waiting_for_food" type="ProgressBar" parent="."]
+visible = false
+offset_left = -9.0
+offset_top = -13.5
+offset_right = 7.5
+offset_bottom = -9.5
+theme = SubResource("Theme_7n8xq")
+max_value = 1.0
+value = 0.5
+show_percentage = false

@@ -1,0 +1,88 @@
+[gd_scene load_steps=47 format=3 uid="uid://j5demmk8rn2e"]
+
+[ext_resource type="Script" uid="uid://41rldsqflipt" path="res://scenes/food.gd" id="1_af40f"]
+[ext_resource type="Texture2D" uid="uid://cb2domobjh7qe" path="res://assets/food/06_apple_pie_dish.png" id="2_xfdb3"]
+[ext_resource type="Texture2D" uid="uid://cleat7xokkni" path="res://assets/food/08_bread_dish.png" id="3_1a6sw"]
+[ext_resource type="Texture2D" uid="uid://i34pufsrh5sh" path="res://assets/food/10_baguette_dish.png" id="4_geyk4"]
+[ext_resource type="Texture2D" uid="uid://bq6hg5nujh661" path="res://assets/food/12_bun_dish.png" id="5_mde8l"]
+[ext_resource type="Texture2D" uid="uid://c57kjfmkpdbo4" path="res://assets/food/14_bacon_dish.png" id="6_x3vox"]
+[ext_resource type="Texture2D" uid="uid://bg32h7li0u4tt" path="res://assets/food/16_burger_dish.png" id="7_eyr0k"]
+[ext_resource type="Texture2D" uid="uid://dn5m8df7xfrtq" path="res://assets/food/19_burrito_dish.png" id="8_a6e32"]
+[ext_resource type="Texture2D" uid="uid://tmdkq0y4eped" path="res://assets/food/21_bagel_dish.png" id="9_3kj8u"]
+[ext_resource type="Texture2D" uid="uid://d16u5uenv6fo8" path="res://assets/food/23_cheesecake_dish.png" id="10_oqb2a"]
+[ext_resource type="Texture2D" uid="uid://0e4xdugpyj7d" path="res://assets/food/27_chocolate_dish.png" id="11_546wq"]
+[ext_resource type="Texture2D" uid="uid://bh2dy77sef2ud" path="res://assets/food/29_cookies_dish.png" id="12_26yi2"]
+[ext_resource type="Texture2D" uid="uid://bsu0get0br1py" path="res://assets/food/31_chocolatecake_dish.png" id="13_g0fkk"]
+[ext_resource type="Texture2D" uid="uid://b0xu2gcwesjyo" path="res://assets/food/33_curry_dish.png" id="14_y0imm"]
+[ext_resource type="Texture2D" uid="uid://djjfvgxe8f28d" path="res://assets/food/35_donut_dish.png" id="15_155id"]
+[ext_resource type="Texture2D" uid="uid://deyk80bfqatp1" path="res://assets/food/37_dumplings_dish.png" id="16_mvdpj"]
+[ext_resource type="Texture2D" uid="uid://dqlf1wn7cwmgy" path="res://assets/food/39_friedegg_dish.png" id="17_s7y8b"]
+[ext_resource type="Texture2D" uid="uid://bfk1d3amrakfa" path="res://assets/food/43_eggtart_dish.png" id="18_006jp"]
+[ext_resource type="Texture2D" uid="uid://dojl7kmwx6r83" path="res://assets/food/45_frenchfries_dish.png" id="19_61w7s"]
+[ext_resource type="Texture2D" uid="uid://co4xr0a7jck1x" path="res://assets/food/47_fruitcake_dish.png" id="20_jbmev"]
+[ext_resource type="Texture2D" uid="uid://dte0nvyuo1m1f" path="res://assets/food/49_garlicbread_dish.png" id="21_51byd"]
+[ext_resource type="Texture2D" uid="uid://dvybm1c8x66pb" path="res://assets/food/51_giantgummybear_dish.png" id="22_cbhao"]
+[ext_resource type="Texture2D" uid="uid://cj44a4ny5xf3s" path="res://assets/food/53_gingerbreadman_dish.png" id="23_v4jxe"]
+[ext_resource type="Texture2D" uid="uid://dyir5yjothww1" path="res://assets/food/56_hotdog_dish.png" id="24_rm2i5"]
+[ext_resource type="Texture2D" uid="uid://dvhfjcfs46aoh" path="res://assets/food/60_jelly_dish.png" id="25_ln30e"]
+[ext_resource type="Texture2D" uid="uid://c3whgiqdaex5s" path="res://assets/food/62_jam_dish.png" id="26_noker"]
+[ext_resource type="Texture2D" uid="uid://r5vc0qm7qb2u" path="res://assets/food/64_lemonpie_dish.png" id="27_apgeo"]
+[ext_resource type="Texture2D" uid="uid://bpu1q6plxwt4u" path="res://assets/food/66_loafbread_dish.png" id="28_srdpg"]
+[ext_resource type="Texture2D" uid="uid://ctw8bfqgh4d0l" path="res://assets/food/68_macncheese_dish.png" id="29_pyuu5"]
+[ext_resource type="Texture2D" uid="uid://fypqelionk8o" path="res://assets/food/70_meatball_dish.png" id="30_2ikj1"]
+[ext_resource type="Texture2D" uid="uid://bs1flgfo8n4xk" path="res://assets/food/72_nacho_dish.png" id="31_h1s6g"]
+[ext_resource type="Texture2D" uid="uid://6xmb0y12lb21" path="res://assets/food/74_omlet_dish.png" id="32_tb3dk"]
+[ext_resource type="Texture2D" uid="uid://dlpll6lpv5h4f" path="res://assets/food/76_pudding_dish.png" id="33_20m5a"]
+[ext_resource type="Texture2D" uid="uid://xe88t8vxhf1u" path="res://assets/food/80_pancakes_dish.png" id="34_qbcr2"]
+[ext_resource type="Texture2D" uid="uid://b3gqi7kkxmhob" path="res://assets/food/82_pizza_dish.png" id="35_yi8lp"]
+[ext_resource type="Texture2D" uid="uid://6sffnfoqoieg" path="res://assets/food/86_roastedchicken_dish.png" id="36_fj8o6"]
+[ext_resource type="Texture2D" uid="uid://deihims213a8" path="res://assets/food/89_salmon_dish.png" id="37_dmnu2"]
+[ext_resource type="Texture2D" uid="uid://2hwretwh7a1n" path="res://assets/food/91_strawberrycake_dish.png" id="38_7ey60"]
+[ext_resource type="Texture2D" uid="uid://v0oayg4l7d0m" path="res://assets/food/93_sandwich_dish.png" id="39_su6la"]
+[ext_resource type="Texture2D" uid="uid://bmcom7admq02" path="res://assets/food/96_steak_dish.png" id="40_rjyct"]
+[ext_resource type="Texture2D" uid="uid://bsb1cty1q7hq1" path="res://assets/food/98_sushi_dish.png" id="41_6pt3t"]
+[ext_resource type="Texture2D" uid="uid://cnsf0drvusy4l" path="res://assets/food/100_taco_dish.png" id="42_kblf5"]
+[ext_resource type="Texture2D" uid="uid://dhnb1al6s5j6i" path="res://assets/food/102_waffle_dish.png" id="43_o18t0"]
+[ext_resource type="AudioStream" uid="uid://v3n00ndvqxeq" path="res://music/PickedFood.mp3" id="44_xfdb3"]
+[ext_resource type="Texture2D" uid="uid://bslw3fubhkcaf" path="res://assets/water.png" id="45_1a6sw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_af40f"]
+
+[node name="food" type="RigidBody2D"]
+gravity_scale = 0.0
+linear_damp = 0.5
+script = ExtResource("1_af40f")
+textures = Array[Texture2D]([ExtResource("2_xfdb3"), ExtResource("3_1a6sw"), ExtResource("4_geyk4"), ExtResource("5_mde8l"), ExtResource("6_x3vox"), ExtResource("7_eyr0k"), ExtResource("8_a6e32"), ExtResource("9_3kj8u"), ExtResource("10_oqb2a"), ExtResource("11_546wq"), ExtResource("12_26yi2"), ExtResource("13_g0fkk"), ExtResource("14_y0imm"), ExtResource("15_155id"), ExtResource("16_mvdpj"), ExtResource("17_s7y8b"), ExtResource("18_006jp"), ExtResource("19_61w7s"), ExtResource("20_jbmev"), ExtResource("21_51byd"), ExtResource("22_cbhao"), ExtResource("23_v4jxe"), ExtResource("24_rm2i5"), ExtResource("25_ln30e"), ExtResource("26_noker"), ExtResource("27_apgeo"), ExtResource("28_srdpg"), ExtResource("29_pyuu5"), ExtResource("30_2ikj1"), ExtResource("31_h1s6g"), ExtResource("32_tb3dk"), ExtResource("33_20m5a"), ExtResource("34_qbcr2"), ExtResource("35_yi8lp"), ExtResource("36_fj8o6"), ExtResource("37_dmnu2"), ExtResource("38_7ey60"), ExtResource("39_su6la"), ExtResource("40_rjyct"), ExtResource("41_6pt3t"), ExtResource("42_kblf5"), ExtResource("43_o18t0")])
+sound = ExtResource("44_xfdb3")
+water_texture = ExtResource("45_1a6sw")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(-4.7683716e-07, 4.7683716e-07)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("26_noker")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_af40f")
+
+[node name="table_number" type="Label" parent="."]
+z_index = 5
+z_as_relative = false
+offset_left = -10.0
+offset_top = -18.0
+offset_right = 30.0
+offset_bottom = 22.833332
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "5"
+
+[node name="area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area"]
+scale = Vector2(1.2, 1.2)
+shape = SubResource("RectangleShape2D_af40f")
+
+[connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]

@@ -1,0 +1,222 @@
+[gd_scene load_steps=27 format=3 uid="uid://btn8r2nbceeuc"]
+
+[ext_resource type="Script" uid="uid://dgvucud13p5l3" path="res://scenes/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://drsyh05eukgw1" path="res://assets/prototype_character.png" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://bipxfveukxnhr" path="res://assets/circle.png" id="3_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://dgxryp17vdj54" path="res://assets/plus_one.png" id="4_dqkch"]
+[ext_resource type="Texture2D" uid="uid://u06ph040m4os" path="res://assets/smoke.png" id="5_qlg0r"]
+
+[sub_resource type="Curve" id="Curve_tuyoq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_fjrip"]
+curve = SubResource("Curve_tuyoq")
+
+[sub_resource type="Curve" id="Curve_smehm"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 0.84269667), 0.0, 0.0, 0, 0, Vector2(1, 1.4606743), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ur7pv"]
+curve = SubResource("Curve_smehm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y4r1p"]
+particle_flag_disable_z = true
+angle_min = 1.0728835e-05
+angle_max = 50.00001
+spread = 0.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_ur7pv")
+alpha_curve = SubResource("CurveTexture_fjrip")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
+atlas = ExtResource("2_g2els")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
+atlas = ExtResource("2_g2els")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
+atlas = ExtResource("2_g2els")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
+atlas = ExtResource("2_g2els")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
+atlas = ExtResource("2_g2els")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
+atlas = ExtResource("2_g2els")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ur7pv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhqgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqkch")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlg0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuyoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjrip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smehm")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(16, 16)
+
+[sub_resource type="Curve" id="Curve_dqkch"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qlg0r"]
+curve = SubResource("Curve_dqkch")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qlg0r"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+damping_min = 20.0
+damping_max = 20.0
+scale_min = 1.3
+scale_max = 1.3
+alpha_curve = SubResource("CurveTexture_qlg0r")
+
+[sub_resource type="Curve" id="Curve_qlg0r"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tuyoq"]
+curve = SubResource("Curve_qlg0r")
+
+[sub_resource type="Curve" id="Curve_fjrip"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 0.84269667), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_smehm"]
+curve = SubResource("Curve_fjrip")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ur7pv"]
+particle_flag_disable_z = true
+angle_min = 1.0728835e-05
+angle_max = 50.00001
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 20, 0)
+scale_curve = SubResource("CurveTexture_smehm")
+alpha_curve = SubResource("CurveTexture_tuyoq")
+
+[node name="player" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+collision_layer = 3
+platform_floor_layers = 4294901760
+script = ExtResource("1_g2els")
+
+[node name="walking" type="GPUParticles2D" parent="."]
+position = Vector2(0, 8.666667)
+emitting = false
+amount = 3
+texture = ExtResource("5_qlg0r")
+lifetime = 0.3
+randomness = 0.43
+process_material = SubResource("ParticleProcessMaterial_y4r1p")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_ur7pv")
+animation = &"walk"
+speed_scale = 1.5
+
+[node name="circle" type="Sprite2D" parent="Sprite2D"]
+show_behind_parent = true
+position = Vector2(0, 6.2222233)
+scale = Vector2(0.6666667, 0.6666667)
+texture = ExtResource("3_qhqgy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_g2els")
+
+[node name="npc_hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="npc_hurtbox"]
+visible = false
+scale = Vector2(1.3, 1.3)
+shape = SubResource("RectangleShape2D_g2els")
+
+[node name="max_food" type="Label" parent="."]
+visible = false
+modulate = Color(1, 0.37, 0.37, 1)
+z_index = 5
+z_as_relative = false
+offset_left = -35.333332
+offset_top = 14.0
+offset_right = 201.66667
+offset_bottom = 63.0
+scale = Vector2(0.3, 0.3)
+theme_override_font_sizes/font_size = 48
+text = "max food (3)"
+
+[node name="player_label" type="Label" parent="."]
+offset_left = -35.333332
+offset_top = -29.999996
+offset_right = 201.66667
+offset_bottom = 19.000004
+scale = Vector2(0.3, 0.3)
+theme_override_font_sizes/font_size = 48
+text = "P1"
+horizontal_alignment = 1
+
+[node name="plus_one" type="GPUParticles2D" parent="."]
+self_modulate = Color(2.34715, 2.34715, 2.34715, 1)
+z_index = 10
+emitting = false
+amount = 1
+texture = ExtResource("4_dqkch")
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_qlg0r")
+
+[node name="spill_walking" type="GPUParticles2D" parent="."]
+modulate = Color(0.41000003, 0.6656667, 1, 1)
+position = Vector2(0, 8.666667)
+emitting = false
+amount = 30
+texture = ExtResource("5_qlg0r")
+lifetime = 2.0
+explosiveness = 0.44
+randomness = 0.43
+process_material = SubResource("ParticleProcessMaterial_ur7pv")
+
+[connection signal="body_entered" from="npc_hurtbox" to="." method="_on_npc_hurtbox_body_entered"]

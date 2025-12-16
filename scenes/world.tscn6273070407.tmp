@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhqj3sxcndjmt"]
+
+[ext_resource type="Script" uid="uid://cdhue6jiwuads" path="res://scenes/world.gd" id="1_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://x08i4ykf1q26" path="res://scenes/table.tscn" id="1_nnsk1"]
+[ext_resource type="PackedScene" uid="uid://btn8r2nbceeuc" path="res://scenes/player.tscn" id="2_rwgxs"]
+
+[node name="world" type="Node2D" node_paths=PackedStringArray("npc_spawn_pos")]
+script = ExtResource("1_4wyf3")
+npc_spawn_pos = NodePath("npc_spawn/npc_spawn_position")
+
+[node name="tables" type="Node2D" parent="."]
+
+[node name="table1" parent="tables" instance=ExtResource("1_nnsk1")]
+position = Vector2(184, 338)
+
+[node name="table2" parent="tables" instance=ExtResource("1_nnsk1")]
+position = Vector2(468, 338)
+table_number = 2
+
+[node name="table3" parent="tables" instance=ExtResource("1_nnsk1")]
+position = Vector2(729, 340)
+table_number = 3
+
+[node name="table4" parent="tables" instance=ExtResource("1_nnsk1")]
+position = Vector2(989, 341)
+table_number = 4
+
+[node name="table5" parent="tables" instance=ExtResource("1_nnsk1")]
+position = Vector2(185, 521)
+table_number = 5
+
+[node name="table6" parent="tables" instance=ExtResource("1_nnsk1")]
+position = Vector2(467, 518)
+table_number = 6
+
+[node name="table7" parent="tables" instance=ExtResource("1_nnsk1")]
+position = Vector2(728, 523)
+table_number = 7
+
+[node name="table8" parent="tables" instance=ExtResource("1_nnsk1")]
+position = Vector2(990, 530)
+table_number = 8
+
+[node name="player" parent="." instance=ExtResource("2_rwgxs")]
+position = Vector2(589, 60.000008)
+
+[node name="npc_spawn" type="Timer" parent="."]
+autostart = true
+
+[node name="npc_spawn_position" type="Node2D" parent="npc_spawn"]
+position = Vector2(0, 189)
+
+[node name="food_position" type="Node2D" parent="."]
+position = Vector2(0, 79)
+
+[connection signal="timeout" from="npc_spawn" to="." method="_on_npc_spawn_timeout"]
