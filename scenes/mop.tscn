@@ -1,11 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://dclfj8ctlnfg0"]
+[gd_scene load_steps=5 format=3 uid="uid://dclfj8ctlnfg0"]
 
+[ext_resource type="Script" uid="uid://dwcsyahi1ij2w" path="res://scenes/mop.gd" id="1_dmg84"]
 [ext_resource type="Texture2D" uid="uid://r7428p4523q" path="res://assets/broom.png" id="1_w2awh"]
+[ext_resource type="Texture2D" uid="uid://dp10fpwu7yph3" path="res://assets/drop_holdable_tool.png" id="3_j6lsx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dmg84"]
 size = Vector2(41, 48)
 
 [node name="mop" type="RigidBody2D"]
+collision_layer = 0
+gravity_scale = 0.0
+linear_damp = 0.5
+script = ExtResource("1_dmg84")
 
 [node name="sprite" type="Sprite2D" parent="."]
 position = Vector2(-4.7683716e-07, 4.7683716e-07)
@@ -14,9 +20,11 @@ texture = ExtResource("1_w2awh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, 0)
+scale = Vector2(0.7, 0.7)
 shape = SubResource("RectangleShape2D_dmg84")
 
 [node name="area" type="Area2D" parent="."]
+scale = Vector2(0.9, 0.9)
 collision_layer = 0
 collision_mask = 2
 
@@ -24,3 +32,11 @@ collision_mask = 2
 position = Vector2(-2.4, 0)
 scale = Vector2(1.2, 1.2)
 shape = SubResource("RectangleShape2D_dmg84")
+
+[node name="drop" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-2.0000002, 42)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_j6lsx")
+
+[connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]

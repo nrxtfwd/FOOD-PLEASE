@@ -22,7 +22,7 @@ func _on_area_body_entered(body: Node2D) -> void:
 		return
 	if len(body.holding) >= 3:
 		return
-	body.holding.append(body)
+	body.holding.append(self)
 	Global.play(sound)
 	reparent.call_deferred(body)
 	call_deferred('set', 'process_mode', PROCESS_MODE_DISABLED)

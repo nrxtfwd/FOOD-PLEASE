@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+const SPILL = preload("uid://bjprfu537xvt4")
+
 @export var speed : float = 350.0
 @export var accel : float = 50.0
 @export var player_color : Color
@@ -9,9 +11,12 @@ class_name Player
 @export var right : String = 'right'
 @export var up : String = 'up'
 @export var down : String = 'down'
+@export var interact : String = 'interact'
 
 @onready var sprite = $Sprite2D
 @onready var walking = $walking
+
+signal interacted
 
 var holding = []
 var walking_on_spill = false
@@ -68,10 +73,23 @@ func _physics_process(delta: float) -> void:
 	kb *= 0.95
 	move_and_slide()
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed(interact):
+		interacted.emit()
+
 func _on_npc_hurtbox_body_entered(body: Node2D) -> void:
 	if body == self:
 		return
-	#print("NPC KNOCKBACK!!")
-	kb = body.global_position.direction_to(global_position) * speed * 0.75
+	for hold in holding:
+		if hold is Food and hold.is_water:
+			Global.order_food.emit(hold.table_number, true)
+			var spill = SPILL.instantiate()
+			spill.global_position = global_position + (velocity.normalized() * 50.0)
+			get_tree().current_scene.add_child.call_deferred(spill)
+			Global.play(load('res://music/GlassBreak.mp3'))
+			holding.erase(hold)
+			hold.queue_free()
+			
+	kb = body.global_position.direction_to(global_position) * speed * 0.7
 	if body is Player:
 		kb *= 0.7

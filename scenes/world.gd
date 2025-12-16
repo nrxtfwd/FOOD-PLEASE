@@ -17,7 +17,7 @@ var spawn_critics = true
 var tick = 0
 var is_rush_hour = false
 
-func spawn_food(table_number):
+func spawn_food(table_number, is_water = false):
 	if tick <= 3.0:
 		return
 	$food_position.get_node("AnimationPlayer").stop()
@@ -27,12 +27,14 @@ func spawn_food(table_number):
 		(randf()-0.5) * 200.0,
 		0
 	)
+	food.is_water = is_water or randf() <= 0.25
 	food.table_number = table_number
 	food.apply_central_impulse(Vector2(0,100))
 	get_parent().add_child.call_deferred(food)
 
 func _ready() -> void:
 	$bg_music.play()
+	Global.bg_music = $bg_music
 	Global.work_hour = 0
 	Global.lives = 3
 	Global.order_food.connect(spawn_food)

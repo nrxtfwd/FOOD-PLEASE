@@ -9,6 +9,8 @@ signal rush_hour
 signal rush_hour_ended
 signal critics_status
 
+var bg_music
+var sfx_volume = -15.0
 var player1
 var player2
 var npc_id = 0
@@ -23,10 +25,13 @@ var lives = 3 :
 			game_over.emit()
 		lives_changed.emit(lives)
 
+func tick():
+	return Time.get_ticks_msec()/1000.0
+
 func play(file):
 	var audio = AudioStreamPlayer.new()
 	audio.stream = file
-	audio.volume_db = -5.0
+	audio.volume_db = sfx_volume
 	get_tree().current_scene.add_child(audio)
 	audio.play()
 	await audio.finished
