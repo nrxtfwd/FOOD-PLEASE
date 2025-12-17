@@ -63,8 +63,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_abqhh"]
-size = Vector2(10.799999, 13.6)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hwkja"]
+radius = 6.2000003
+height = 14.400002
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abqhh"]
 bg_color = Color(0.37036464, 0.37036443, 0.37036446, 1)
@@ -79,7 +80,9 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_rv78h")
 [node name="npc" type="CharacterBody2D" groups=["npc"]]
 scale = Vector2(2.5, 2.5)
 collision_layer = 4
+platform_floor_layers = 4294901760
 script = ExtResource("1_abqhh")
+max_anger_time = 12.0
 angry_sound = ExtResource("2_hwkja")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
@@ -96,7 +99,7 @@ animation = &"idle"
 [node name="col_shape" type="CollisionShape2D" parent="."]
 position = Vector2(-0.1999995, 7.152556e-07)
 scale = Vector2(0.9999998, 0.9999998)
-shape = SubResource("RectangleShape2D_abqhh")
+shape = SubResource("CapsuleShape2D_hwkja")
 
 [node name="waiting_for_food" type="ProgressBar" parent="."]
 visible = false

@@ -5,6 +5,7 @@ extends Node2D
 @export var npc_spawn_min_time := 2.0
 @export var npc_spawn_max_time := 4.0
 @export var rush_hour_spawn_time = 2.0
+@export var level_num : int = 1
 
 const FOOD = preload("uid://j5demmk8rn2e")
 const NPC = preload("uid://chnpqygrmmy6b")
@@ -20,16 +21,20 @@ var is_rush_hour = false
 func spawn_food(table_number, is_water = false):
 	if tick <= 3.0:
 		return
-	$food_position.get_node("AnimationPlayer").stop()
-	$food_position.get_node("AnimationPlayer").play('fade')
+	var n = randi_range(1,2)
+	var food_pos = get_node('food_position' + str(n))
+	food_pos.get_node("AnimationPlayer").stop()
+	food_pos.get_node("AnimationPlayer").play('fade')
 	var food : RigidBody2D = FOOD.instantiate()
-	food.global_position = $food_position.position+Vector2(
-		(randf()-0.5) * 200.0,
-		0
+	food.global_position = food_pos.position+Vector2(
+		0,
+		(randf()-0.5) * 40.0
 	)
-	food.is_water = is_water or randf() <= 0.25
+	#food.is_water = is_water or randf() <= 0.25
 	food.table_number = table_number
-	food.apply_central_impulse(Vector2(0,100))
+	food.apply_central_impulse(Vector2(
+		(1.0 if n == 1  else -1.0) * -200.0,0
+	))
 	get_parent().add_child.call_deferred(food)
 
 func _ready() -> void:
@@ -99,8 +104,9 @@ func _on_food_critic_timeout() -> void:
 	for n in range(4):
 		var npc = NPC.instantiate()
 		npc.is_critic = true
-		npc.max_food_wait_time *= 0.6 
-		npc.max_food_rounds = randi_range(3,5)
+		npc.max_food_wait_time *= 0.8
+		npc.max_food_wait_time *= 1.5
+		npc.max_food_rounds = randi_range(1,5)
 		npc.table_number = sel_table.table_number
 		npc.global_position = npc_spawn_pos.global_position+Vector2(n*-50.0,randi_range(-1,1)*50.0)
 		add_child.call_deferred(npc)

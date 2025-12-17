@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://j5demmk8rn2e"]
+[gd_scene load_steps=49 format=3 uid="uid://j5demmk8rn2e"]
 
 [ext_resource type="Script" uid="uid://41rldsqflipt" path="res://scenes/food.gd" id="1_af40f"]
 [ext_resource type="Texture2D" uid="uid://cb2domobjh7qe" path="res://assets/food/06_apple_pie_dish.png" id="2_xfdb3"]
@@ -45,24 +45,30 @@
 [ext_resource type="Texture2D" uid="uid://dhnb1al6s5j6i" path="res://assets/food/102_waffle_dish.png" id="43_o18t0"]
 [ext_resource type="AudioStream" uid="uid://v3n00ndvqxeq" path="res://music/PickedFood.mp3" id="44_xfdb3"]
 [ext_resource type="Texture2D" uid="uid://bslw3fubhkcaf" path="res://assets/water.png" id="45_1a6sw"]
+[ext_resource type="Texture2D" uid="uid://mhjjs2a508kk" path="res://assets/cakes/birthday_cake.png" id="46_g0fkk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0imm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_af40f"]
 
-[node name="food" type="RigidBody2D"]
+[node name="food" type="RigidBody2D" node_paths=PackedStringArray("cake_col_shapes", "default_col_shapes") groups=["food"]]
 gravity_scale = 0.0
 linear_damp = 0.5
 script = ExtResource("1_af40f")
 textures = Array[Texture2D]([ExtResource("2_xfdb3"), ExtResource("3_1a6sw"), ExtResource("4_geyk4"), ExtResource("5_mde8l"), ExtResource("6_x3vox"), ExtResource("7_eyr0k"), ExtResource("8_a6e32"), ExtResource("9_3kj8u"), ExtResource("10_oqb2a"), ExtResource("11_546wq"), ExtResource("12_26yi2"), ExtResource("13_g0fkk"), ExtResource("14_y0imm"), ExtResource("15_155id"), ExtResource("16_mvdpj"), ExtResource("17_s7y8b"), ExtResource("18_006jp"), ExtResource("19_61w7s"), ExtResource("20_jbmev"), ExtResource("21_51byd"), ExtResource("22_cbhao"), ExtResource("23_v4jxe"), ExtResource("24_rm2i5"), ExtResource("25_ln30e"), ExtResource("26_noker"), ExtResource("27_apgeo"), ExtResource("28_srdpg"), ExtResource("29_pyuu5"), ExtResource("30_2ikj1"), ExtResource("31_h1s6g"), ExtResource("32_tb3dk"), ExtResource("33_20m5a"), ExtResource("34_qbcr2"), ExtResource("35_yi8lp"), ExtResource("36_fj8o6"), ExtResource("37_dmnu2"), ExtResource("38_7ey60"), ExtResource("39_su6la"), ExtResource("40_rjyct"), ExtResource("41_6pt3t"), ExtResource("42_kblf5"), ExtResource("43_o18t0")])
 sound = ExtResource("44_xfdb3")
 water_texture = ExtResource("45_1a6sw")
+cake_textures = Array[Texture2D]([ExtResource("46_g0fkk")])
+cake_col_shapes = [NodePath("CollisionPolygon2D"), NodePath("area/CollisionPolygon2D")]
+default_col_shapes = [NodePath("CollisionShape2D"), NodePath("area/CollisionShape2D")]
 
 [node name="sprite" type="Sprite2D" parent="."]
 position = Vector2(-4.7683716e-07, 4.7683716e-07)
 scale = Vector2(1.25, 1.25)
-texture = ExtResource("26_noker")
+texture = ExtResource("46_g0fkk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_af40f")
+shape = SubResource("RectangleShape2D_y0imm")
 
 [node name="table_number" type="Label" parent="."]
 z_index = 5
@@ -84,5 +90,13 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="area"]
 scale = Vector2(1.2, 1.2)
 shape = SubResource("RectangleShape2D_af40f")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="area"]
+polygon = PackedVector2Array(-32, 41, -11, -33, 11, -33, 34, 40)
+disabled = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-32, 41, -11, -33, 11, -33, 34, 40)
+disabled = true
 
 [connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]

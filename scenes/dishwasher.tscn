@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxmfagarjtup3"]
+
+[ext_resource type="Script" uid="uid://c7p2ef7arolr7" path="res://scenes/dishwasher.gd" id="1_p2l7i"]
+[ext_resource type="Texture2D" uid="uid://hhjoey82vxr3" path="res://assets/food/03_dish_pile.png" id="2_xetae"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fh7ev"]
+
+[sub_resource type="Curve" id="Curve_owpgt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.8894737, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_0nib5"]
+curve = SubResource("Curve_owpgt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7k3gs"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 7, 1)
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_0nib5")
+
+[node name="dishwasher" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_p2l7i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fh7ev")
+
+[node name="dish" type="GPUParticles2D" parent="."]
+position = Vector2(0, 2)
+emitting = false
+amount = 1
+texture = ExtResource("2_xetae")
+lifetime = 10.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_7k3gs")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

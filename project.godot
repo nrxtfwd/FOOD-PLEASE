@@ -26,6 +26,7 @@ window/stretch/mode="canvas_items"
 [global_group]
 
 npc=""
+food=""
 
 [gui]
 
@@ -109,6 +110,7 @@ escape={
 2d_physics/layer_1="default"
 2d_physics/layer_2="player"
 2d_physics/layer_3="npc"
+2d_physics/layer_4="speed_boost"
 
 [rendering]
 

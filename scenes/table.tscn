@@ -1,26 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://x08i4ykf1q26"]
+[gd_scene load_steps=13 format=3 uid="uid://x08i4ykf1q26"]
 
 [ext_resource type="Texture2D" uid="uid://dfqh50glnbm" path="res://assets/rect.png" id="1_02ppr"]
 [ext_resource type="Script" uid="uid://bx1f1xdbq77di" path="res://scenes/table.gd" id="1_eotx8"]
 [ext_resource type="AudioStream" uid="uid://c8vfergsvbsw0" path="res://music/Delivered.mp3" id="2_x8522"]
+[ext_resource type="Texture2D" uid="uid://hhjoey82vxr3" path="res://assets/food/03_dish_pile.png" id="4_2f5gb"]
+[ext_resource type="Texture2D" uid="uid://dl1yw0sb38fyf" path="res://assets/radial_light_gradient3.png" id="5_ov7a8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2f5gb"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u03e6"]
+size = Vector2(16, 9)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eotx8"]
 size = Vector2(16, 16)
-
-[sub_resource type="Animation" id="Animation_eotx8"]
-resource_name = "served"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.26666668, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(3.7, 6.8), Vector2(3.5, 9), Vector2(3.7, 6.8)]
-}
 
 [sub_resource type="Animation" id="Animation_x8522"]
 length = 0.001
@@ -37,16 +30,38 @@ tracks/0/keys = {
 "values": [Vector2(3.7, 6.8)]
 }
 
+[sub_resource type="Animation" id="Animation_eotx8"]
+resource_name = "served"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(3.7, 6.8), Vector2(3.5, 9), Vector2(3.7, 6.8)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_olh0b"]
 _data = {
 &"RESET": SubResource("Animation_x8522"),
 &"served": SubResource("Animation_eotx8")
 }
 
-[node name="table" type="StaticBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u03e6"]
+radius = 7.5675673
+height = 15.882352
+
+[node name="table" type="StaticBody2D" node_paths=PackedStringArray("area_col_shape")]
 scale = Vector2(3.7, 6.8)
 script = ExtResource("1_eotx8")
 sound = ExtResource("2_x8522")
+default_col_shape = SubResource("RectangleShape2D_2f5gb")
+area_col_shape = NodePath("area/CollisionShape2D")
+level3_col_shape = SubResource("RectangleShape2D_u03e6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -107,9 +122,9 @@ scale = Vector2(0.4, 0.222)
 texture = ExtResource("1_02ppr")
 
 [node name="table_number" type="Label" parent="."]
-offset_left = -7.0
+offset_left = -14.324324
 offset_top = -7.250003
-offset_right = 33.0
+offset_right = 25.675676
 offset_bottom = 33.58333
 scale = Vector2(0.7, 0.35)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -117,11 +132,40 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 40
 text = "5"
+horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_olh0b")
 }
 speed_scale = 3.0
+
+[node name="dirty_plate1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-2.7675679, -4.4348235)
+scale = Vector2(0.3, 0.164)
+texture = ExtResource("4_2f5gb")
+
+[node name="light" type="PointLight2D" parent="dirty_plate1"]
+position = Vector2(-1.5258789e-05, -4.0474906)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_ov7a8")
+texture_scale = 0.5
+
+[node name="dirty_plate2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(3.1783788, 0.71223545)
+scale = Vector2(0.3, 0.164)
+texture = ExtResource("4_2f5gb")
+
+[node name="light" type="PointLight2D" parent="dirty_plate2"]
+position = Vector2(-1.0825497e-06, 2.6983285)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_ov7a8")
+texture_scale = 0.5
+
+[node name="level_2" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_u03e6")
+disabled = true
 
 [connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]

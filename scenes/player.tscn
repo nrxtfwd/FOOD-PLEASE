@@ -1,10 +1,12 @@
-[gd_scene load_steps=27 format=3 uid="uid://btn8r2nbceeuc"]
+[gd_scene load_steps=32 format=3 uid="uid://btn8r2nbceeuc"]
 
 [ext_resource type="Script" uid="uid://dgvucud13p5l3" path="res://scenes/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://drsyh05eukgw1" path="res://assets/prototype_character.png" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://bipxfveukxnhr" path="res://assets/circle.png" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://dgxryp17vdj54" path="res://assets/plus_one.png" id="4_dqkch"]
 [ext_resource type="Texture2D" uid="uid://u06ph040m4os" path="res://assets/smoke.png" id="5_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://hhjoey82vxr3" path="res://assets/food/03_dish_pile.png" id="6_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://bed5h2e0oufw6" path="res://assets/arrow.png" id="7_fjrip"]
 
 [sub_resource type="Curve" id="Curve_tuyoq"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -135,6 +137,23 @@ gravity = Vector3(0, 20, 0)
 scale_curve = SubResource("CurveTexture_smehm")
 alpha_curve = SubResource("CurveTexture_tuyoq")
 
+[sub_resource type="Curve" id="Curve_ur7pv"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.4842105, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_y4r1p"]
+curve = SubResource("Curve_ur7pv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d2wvv"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 1)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.7
+scale_max = 0.7
+color = Color(0.37, 1, 0.5065, 1)
+alpha_curve = SubResource("CurveTexture_y4r1p")
+
 [node name="player" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
 collision_layer = 3
@@ -164,7 +183,6 @@ scale = Vector2(0.6666667, 0.6666667)
 texture = ExtResource("3_qhqgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("RectangleShape2D_g2els")
 
 [node name="npc_hurtbox" type="Area2D" parent="."]
@@ -187,7 +205,7 @@ offset_right = 201.66667
 offset_bottom = 63.0
 scale = Vector2(0.3, 0.3)
 theme_override_font_sizes/font_size = 48
-text = "max food (3)"
+text = "max held items(3)"
 
 [node name="player_label" type="Label" parent="."]
 offset_left = -35.333332
@@ -219,5 +237,38 @@ lifetime = 2.0
 explosiveness = 0.44
 randomness = 0.43
 process_material = SubResource("ParticleProcessMaterial_ur7pv")
+
+[node name="dirty_plate1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-18, 0)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("6_tuyoq")
+
+[node name="dirty_plate2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(18, 0.6666667)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("6_tuyoq")
+
+[node name="dirty_plate3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-1.9073486e-06, 19.333334)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("6_tuyoq")
+
+[node name="speed_boost" type="GPUParticles2D" parent="."]
+modulate = Color(1.3167266, 1.3167266, 1.3167266, 1)
+emitting = false
+texture = ExtResource("7_fjrip")
+lifetime = 0.4
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_d2wvv")
+
+[node name="speed_boost_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="speed_boost_area"]
+shape = SubResource("RectangleShape2D_g2els")
 
 [connection signal="body_entered" from="npc_hurtbox" to="." method="_on_npc_hurtbox_body_entered"]

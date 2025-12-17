@@ -38,19 +38,20 @@ func game_over():
 
 func work_hour_changed(work_hour):
 	var clock = work_hour + 9
+	var max_work_hours = 8#8 if Global.scene().level_num != 3 else 12
 	var ampm = 'AM'
 	if clock>=12:
 		ampm = 'PM'
 	if clock >= 13:
 		clock -= 12
-	if work_hour >= 7:
+	if work_hour >= max_work_hours-1:
 		work_hour_status_label.text = 'Last stretch!'
-	elif work_hour >= 4:
+	elif work_hour >= max_work_hours/2:
 		work_hour_status_label.text = 'Just ' + str(8-work_hour) + ' more hours!'
 	else:
 		work_hour_status_label.text = 'Still ' + str(8-work_hour) + ' more hours to go...'
 	work_hour_label.text = str(clock) + ampm
-	if work_hour >= 8:
+	if work_hour >= max_work_hours:
 		Global.play(win_sound)
 		var mvp = Global.player1 if Global.player1.points > Global.player2.points else Global.player2
 		var color : Color = mvp.player_color
@@ -59,6 +60,7 @@ func work_hour_changed(work_hour):
 		tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 		tween.tween_property(win,'modulate',Color(1,1,1,1),0.5)
 		get_tree().paused = true
+		Global.levels_unlocked = max(Global.scene().level_num+1, Global.levels_unlocked)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed('restart') and (modulate.a == 1.0 or win.modulate.a == 1.0):

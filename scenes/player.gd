@@ -1,5 +1,4 @@
 extends CharacterBody2D
-class_name Player
 
 const SPILL = preload("uid://bjprfu537xvt4")
 
@@ -15,9 +14,28 @@ const SPILL = preload("uid://bjprfu537xvt4")
 
 @onready var sprite = $Sprite2D
 @onready var walking = $walking
+@onready var dp1 = $dirty_plate1
+@onready var dp2 = $dirty_plate2
 
 signal interacted
 
+var dirty_plates = 0:
+	set(value):
+		dirty_plates = value
+		dp1.visible = dirty_plates >= 1
+		dp2.visible = dirty_plates >= 2
+		if dp1.visible:
+			if holding.find(dp1) == -1:
+				holding.append(dp1)
+		else:
+			if holding.find(dp1) != -1:
+				holding.erase(dp1)
+		if dp2.visible:
+			if holding.find(dp2) == -1:
+				holding.append(dp2)
+		else:
+			if holding.find(dp2) != -1:
+				holding.erase(dp2)
 var holding = []
 var walking_on_spill = false
 var points = 0 :
@@ -46,17 +64,26 @@ func _ready() -> void:
 	sprite.modulate = player_color
 
 func _physics_process(delta: float) -> void:
-	var no_of_food = 0
-	for child in get_children():
-		if child is Food:
-			no_of_food += 1
-	global_position.x = clampf(global_position.x, 0.0,1152.0)
-	global_position.y = clampf(global_position.y, 0.0, 648.0)
-	$max_food.visible = no_of_food >= 3
+	var max_x = 1152.0
+	var max_y = 648.0
+	var is_speed_boost = len($speed_boost_area.get_overlapping_areas()) > 0
+	if Global.scene().level_num == 3:
+		max_x = 1277.0
+		max_y = 719.0
+	global_position.x = clampf(global_position.x, 0.0,max_x)
+	global_position.y = clampf(global_position.y, 0.0, max_y)
+	$max_food.visible = len(holding) >= 3
 	var vector := Input.get_vector(left,right,up,down)
-	speed = 350.0 - (no_of_food *30.0)
+	speed = 350.0 - (len(holding) *30.0)
+	$speed_boost.emitting = is_speed_boost
 	if vector.length() > 0:
-		velocity = velocity.move_toward(vector * speed, accel)
+		var mul = 1.0
+		if is_speed_boost:
+			mul = 1.5
+		for hold in holding:
+			if hold is Food and hold.is_cake:
+				mul *= 0.7
+		velocity = velocity.move_toward(vector * speed * mul, accel)
 		last_vector = vector
 		sprite.flip_h = vector.x < 0
 		sprite.play('walk')
@@ -81,7 +108,10 @@ func _on_npc_hurtbox_body_entered(body: Node2D) -> void:
 	if body == self:
 		return
 	for hold in holding:
-		if hold is Food and hold.is_water:
+		if !is_instance_valid(hold):
+			holding.erase(hold)
+			continue
+		if is_instance_valid(hold) and hold is Food and hold.is_water:
 			Global.order_food.emit(hold.table_number, true)
 			var spill = SPILL.instantiate()
 			spill.global_position = global_position + (velocity.normalized() * 50.0)
@@ -91,5 +121,5 @@ func _on_npc_hurtbox_body_entered(body: Node2D) -> void:
 			hold.queue_free()
 			
 	kb = body.global_position.direction_to(global_position) * speed * 0.7
-	if body is Player:
+	if Global.is_player(body):
 		kb *= 0.7

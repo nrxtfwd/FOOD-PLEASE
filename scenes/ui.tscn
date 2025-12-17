@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cstafv1o6ka5b"]
+[gd_scene load_steps=30 format=3 uid="uid://cstafv1o6ka5b"]
 
 [ext_resource type="Texture2D" uid="uid://bfknagnvvpfux" path="res://assets/heart.png" id="1_nt7q6"]
 [ext_resource type="Script" uid="uid://bxhoy0h1s7cj0" path="res://scenes/lives.gd" id="1_x4jx1"]
@@ -12,13 +12,71 @@
 [ext_resource type="Texture2D" uid="uid://kcm7skigb5wm" path="res://assets/tut2.png" id="7_cgfq5"]
 [ext_resource type="Texture2D" uid="uid://jfwhxuhy73a5" path="res://assets/tut1.png" id="8_7dvkv"]
 [ext_resource type="Texture2D" uid="uid://wgdiw7elldlq" path="res://assets/close.png" id="12_6rmj2"]
+[ext_resource type="Texture2D" uid="uid://clx62q40nhd5j" path="res://assets/tut6.png" id="12_jkdwc"]
 [ext_resource type="Texture2D" uid="uid://cosqbjl2u5i5y" path="res://assets/settings2.png" id="12_vsj0x"]
+[ext_resource type="Script" uid="uid://77yd3x08xd4t" path="res://scenes/level_select_temp.gd" id="13_cof4p"]
 [ext_resource type="Script" uid="uid://pytlv2km2613" path="res://scenes/settings.gd" id="13_qsv74"]
+[ext_resource type="Texture2D" uid="uid://4hdpwv75uvas" path="res://assets/tut7.png" id="13_rlppe"]
+[ext_resource type="Texture2D" uid="uid://d10bbptyvpicj" path="res://assets/level3tutorial/image.png" id="14_catpy"]
+[ext_resource type="Texture2D" uid="uid://u5k6xok3gleg" path="res://assets/level3tutorial/image1.png" id="15_41akx"]
 [ext_resource type="Script" uid="uid://ddo7cwj3ne3aa" path="res://scenes/paused.gd" id="15_h1mc3"]
+[ext_resource type="Texture2D" uid="uid://ctejrrglsivf8" path="res://assets/tick.png" id="15_jkdwc"]
+[ext_resource type="Texture2D" uid="uid://cupprprwmo88x" path="res://assets/level3tutorial/image2.png" id="16_sesyt"]
+[ext_resource type="Texture2D" uid="uid://d0e5hakdalatt" path="res://assets/level3tutorial/image3.png" id="17_gglip"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wm3ai"]
 shader = ExtResource("4_gdt2y")
 shader_parameter/lod = 2.026000096235
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1mc3"]
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cof4p"]
+bg_color = Color(0.62967473, 0.62967485, 0.62967455, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f7tlh"]
+bg_color = Color(0.851769, 0.851769, 0.8517688, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.38170326, 0.38170323, 0.38170323, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cof4p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qsv74"]
 bg_color = Color(0.44291073, 0.4429108, 0.4429106, 1)
@@ -237,7 +295,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("5_wm3ai")
 
-[node name="tutorial" type="ColorRect" parent="Control/main_menu"]
+[node name="level1_tutorial" type="ColorRect" parent="Control/main_menu"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -247,7 +305,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.53333336)
 
-[node name="tutorial" type="VBoxContainer" parent="Control/main_menu/tutorial"]
+[node name="tutorial" type="VBoxContainer" parent="Control/main_menu/level1_tutorial"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -261,16 +319,17 @@ offset_bottom = 187.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
+alignment = 1
 
-[node name="panels" type="HBoxContainer" parent="Control/main_menu/tutorial/tutorial"]
+[node name="panels" type="HBoxContainer" parent="Control/main_menu/level1_tutorial/tutorial"]
 layout_mode = 2
 
-[node name="panel1" type="TextureRect" parent="Control/main_menu/tutorial/tutorial/panels"]
+[node name="panel1" type="TextureRect" parent="Control/main_menu/level1_tutorial/tutorial/panels"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 texture = ExtResource("6_ktti3")
 
-[node name="Label" type="Label" parent="Control/main_menu/tutorial/tutorial/panels/panel1"]
+[node name="Label" type="Label" parent="Control/main_menu/level1_tutorial/tutorial/panels/panel1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -283,12 +342,12 @@ theme_override_font_sizes/font_size = 32
 text = "Deliver food to the right tables!"
 autowrap_mode = 2
 
-[node name="panel2" type="TextureRect" parent="Control/main_menu/tutorial/tutorial/panels"]
+[node name="panel2" type="TextureRect" parent="Control/main_menu/level1_tutorial/tutorial/panels"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 texture = ExtResource("7_cgfq5")
 
-[node name="Label" type="Label" parent="Control/main_menu/tutorial/tutorial/panels/panel2"]
+[node name="Label" type="Label" parent="Control/main_menu/level1_tutorial/tutorial/panels/panel2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -301,12 +360,12 @@ theme_override_font_sizes/font_size = 32
 text = "Deliver them quickly, or customers get mad!"
 autowrap_mode = 2
 
-[node name="panel3" type="TextureRect" parent="Control/main_menu/tutorial/tutorial/panels"]
+[node name="panel3" type="TextureRect" parent="Control/main_menu/level1_tutorial/tutorial/panels"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 texture = ExtResource("8_7dvkv")
 
-[node name="Label" type="Label" parent="Control/main_menu/tutorial/tutorial/panels/panel3"]
+[node name="Label" type="Label" parent="Control/main_menu/level1_tutorial/tutorial/panels/panel3"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -321,7 +380,253 @@ theme_override_font_sizes/font_size = 32
 text = "Dont get fired before 5PM! (Survive)"
 autowrap_mode = 2
 
-[node name="Label" type="Label" parent="Control/main_menu/tutorial/tutorial"]
+[node name="Label" type="Label" parent="Control/main_menu/level1_tutorial/tutorial"]
+layout_mode = 2
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 48
+text = "Enter to START"
+horizontal_alignment = 1
+
+[node name="level2_tutorial" type="ColorRect" parent="Control/main_menu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.53333336)
+
+[node name="tutorial" type="VBoxContainer" parent="Control/main_menu/level2_tutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -457.5
+offset_top = -187.0
+offset_right = 457.5
+offset_bottom = 187.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="panels" type="HBoxContainer" parent="Control/main_menu/level2_tutorial/tutorial"]
+layout_mode = 2
+alignment = 1
+
+[node name="panel1" type="TextureRect" parent="Control/main_menu/level2_tutorial/tutorial/panels"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("12_jkdwc")
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Control/main_menu/level2_tutorial/tutorial/panels/panel1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 32
+text = "Customers leave dirty plates!"
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="Control/main_menu/level2_tutorial/tutorial/panels/panel1"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.333336
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 32
+text = "Touching the tables collects the dirty plates..."
+autowrap_mode = 2
+
+[node name="panel2" type="TextureRect" parent="Control/main_menu/level2_tutorial/tutorial/panels"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("13_rlppe")
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Control/main_menu/level2_tutorial/tutorial/panels/panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 32
+text = "Get rid of dirty plates at the \"dishwasher\"..."
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="Control/main_menu/level2_tutorial/tutorial/panels/panel2"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.333336
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 32
+text = "You can only carry 2 dirty plates at once"
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Control/main_menu/level2_tutorial/tutorial"]
+layout_mode = 2
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 48
+text = "Enter to START"
+horizontal_alignment = 1
+
+[node name="level3_tutorial" type="ColorRect" parent="Control/main_menu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.53333336)
+
+[node name="tutorial" type="VBoxContainer" parent="Control/main_menu/level3_tutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -457.5
+offset_top = -187.0
+offset_right = 457.5
+offset_bottom = 187.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="panels" type="HBoxContainer" parent="Control/main_menu/level3_tutorial/tutorial"]
+layout_mode = 2
+alignment = 1
+
+[node name="panel1" type="TextureRect" parent="Control/main_menu/level3_tutorial/tutorial/panels"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+texture = ExtResource("14_catpy")
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Control/main_menu/level3_tutorial/tutorial/panels/panel1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 32
+text = "Walk on the middle \"carpet\" to get a speed boost!"
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="Control/main_menu/level3_tutorial/tutorial/panels/panel1"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.333336
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 32
+text = "The map is a bit large!"
+autowrap_mode = 2
+
+[node name="panel2" type="TextureRect" parent="Control/main_menu/level3_tutorial/tutorial/panels"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+texture = ExtResource("15_41akx")
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Control/main_menu/level3_tutorial/tutorial/panels/panel2"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.333336
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 32
+text = "VIP Guests will order a huge cake that slows you down..."
+autowrap_mode = 2
+
+[node name="panel3" type="TextureRect" parent="Control/main_menu/level3_tutorial/tutorial/panels"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+texture = ExtResource("16_sesyt")
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Control/main_menu/level3_tutorial/tutorial/panels/panel3"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 104.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 32
+text = "Some guests will order a drink!"
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="Control/main_menu/level3_tutorial/tutorial/panels/panel3"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.333336
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 32
+text = "But carry it carefully..."
+autowrap_mode = 2
+
+[node name="panel4" type="TextureRect" parent="Control/main_menu/level3_tutorial/tutorial/panels"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+texture = ExtResource("17_gglip")
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Control/main_menu/level3_tutorial/tutorial/panels/panel4"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 104.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 32
+text = "Or you'll spill it! You can mop the spill with a mop found in the left bottom corner..."
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Control/main_menu/level3_tutorial/tutorial"]
 layout_mode = 2
 theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 48
@@ -381,6 +686,71 @@ size_flags_vertical = 8
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("12_vsj0x")
 stretch_mode = 4
+
+[node name="levels" type="VBoxContainer" parent="Control/main_menu/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/separation = 28
+
+[node name="level_3" type="Button" parent="Control/main_menu/MarginContainer/levels"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_h1mc3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cof4p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f7tlh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cof4p")
+text = "Level 3
+"
+script = ExtResource("13_cof4p")
+file_name = "level_3"
+level_num = 3
+
+[node name="tick" type="Sprite2D" parent="Control/main_menu/MarginContainer/levels/level_3"]
+visible = false
+position = Vector2(-62, 21)
+scale = Vector2(3, 3)
+texture = ExtResource("15_jkdwc")
+
+[node name="level_2" type="Button" parent="Control/main_menu/MarginContainer/levels"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_h1mc3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cof4p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f7tlh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cof4p")
+text = "Level 2"
+script = ExtResource("13_cof4p")
+file_name = "level_2"
+level_num = 2
+
+[node name="tick" type="Sprite2D" parent="Control/main_menu/MarginContainer/levels/level_2"]
+visible = false
+position = Vector2(-62, 21)
+scale = Vector2(3, 3)
+texture = ExtResource("15_jkdwc")
+
+[node name="level_1" type="Button" parent="Control/main_menu/MarginContainer/levels"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_h1mc3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cof4p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f7tlh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cof4p")
+text = "Level 1"
+script = ExtResource("13_cof4p")
+
+[node name="tick" type="Sprite2D" parent="Control/main_menu/MarginContainer/levels/level_1"]
+visible = false
+position = Vector2(-62, 21)
+scale = Vector2(3, 3)
+texture = ExtResource("15_jkdwc")
 
 [node name="settings" type="PanelContainer" parent="Control/main_menu" node_paths=PackedStringArray("button", "control")]
 process_mode = 3
