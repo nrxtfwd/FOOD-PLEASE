@@ -50,12 +50,13 @@ func process_npc(highest_npc, entity, is_cake = false):
 			if randf() <= 0.2:
 				n = randi_range(1,2)
 			dirty_plates = min(dirty_plates+ n, 2)
-		for npc in occupiers:
-			if is_instance_valid(npc):
-				if npc.id == highest_npc.id:
-					occupiers.remove_at(i)
-					break
-			i += 1
+		if !is_cake:
+			for npc in occupiers:
+				if is_instance_valid(npc):
+					if npc.id == highest_npc.id:
+						occupiers.remove_at(i)
+						break
+				i += 1
 	else:
 		Global.order_food.emit(table_number)
 		highest_npc.say("I want more!!")
@@ -84,6 +85,7 @@ func _on_area_body_entered(entity: Node2D) -> void:
 				food.queue_free()
 				var highest_wait_time = 0
 				var highest_npc
+				
 				for npc in occupiers:
 					if is_instance_valid(npc):
 						if npc.eaten or npc.storm_out:

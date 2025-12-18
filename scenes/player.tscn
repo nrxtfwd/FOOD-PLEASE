@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://btn8r2nbceeuc"]
+[gd_scene load_steps=33 format=3 uid="uid://btn8r2nbceeuc"]
 
 [ext_resource type="Script" uid="uid://dgvucud13p5l3" path="res://scenes/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://drsyh05eukgw1" path="res://assets/prototype_character.png" id="2_g2els"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://u06ph040m4os" path="res://assets/smoke.png" id="5_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://hhjoey82vxr3" path="res://assets/food/03_dish_pile.png" id="6_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://bed5h2e0oufw6" path="res://assets/arrow.png" id="7_fjrip"]
+[ext_resource type="Texture2D" uid="uid://dl1yw0sb38fyf" path="res://assets/radial_light_gradient3.png" id="8_smehm"]
 
 [sub_resource type="Curve" id="Curve_tuyoq"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -208,6 +209,7 @@ theme_override_font_sizes/font_size = 48
 text = "max held items(3)"
 
 [node name="player_label" type="Label" parent="."]
+visible = false
 offset_left = -35.333332
 offset_top = -29.999996
 offset_right = 201.66667
@@ -270,5 +272,12 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="speed_boost_area"]
 shape = SubResource("RectangleShape2D_g2els")
+
+[node name="light" type="PointLight2D" parent="."]
+position = Vector2(1.3333334, 0)
+scale = Vector2(0.5, 0.5)
+energy = 0.7
+texture = ExtResource("8_smehm")
+texture_scale = 0.8
 
 [connection signal="body_entered" from="npc_hurtbox" to="." method="_on_npc_hurtbox_body_entered"]

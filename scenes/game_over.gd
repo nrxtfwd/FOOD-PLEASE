@@ -9,6 +9,7 @@ extends ColorRect
 @export var win_desc : RichTextLabel
 @export var win_sound : AudioStreamMP3
 @export var lose_sound : AudioStreamMP3
+@export var anim_player :AnimationPlayer
 
 func rush_hour(started = false):
 	if started:
@@ -29,9 +30,10 @@ func rush_hour_warning(dur_until):
 func game_over():
 	Global.play(lose_sound)
 	get_tree().paused = true
-	var mvp = Global.player1 if Global.player1.points > Global.player2.points else Global.player2
-	var color : Color = mvp.player_color
-	game_over_desc.text = 'cant even put food on the table! Although [color=#' + str(color.to_html(false)) + ']'+str(mvp.player_label)+'[/color] did try their best with [color=' + str(color.to_html(false)) + ']'+str(mvp.points)+ ' Points[/color]...'
+	#var mvp = Global.player1 if Global.player1.points > Global.player2.points else Global.player2
+	#var color : Color = mvp.player_color
+	#game_over_desc.text = 'cant even put food on the table! Although [color=#' + str(color.to_html(false)) + ']'+str(mvp.player_label)+'[/color] did try their best with [color=' + str(color.to_html(false)) + ']'+str(mvp.points)+ ' Points[/color]...'
+	game_over_desc.text = 'cant even put food on the table!'
 	var tween = get_tree().create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(self,'modulate',Color(1,1,1,1),0.5)
@@ -51,11 +53,14 @@ func work_hour_changed(work_hour):
 	else:
 		work_hour_status_label.text = 'Still ' + str(8-work_hour) + ' more hours to go...'
 	work_hour_label.text = str(clock) + ampm
+	if work_hour > 0:
+		anim_player.play('work_hour_change')
 	if work_hour >= max_work_hours:
 		Global.play(win_sound)
-		var mvp = Global.player1 if Global.player1.points > Global.player2.points else Global.player2
-		var color : Color = mvp.player_color
-		win_desc.text = 'survived a day thanks to [color=#' + str(color.to_html(false)) + ']'+str(mvp.player_label)+'[/color] who scored [color=' + str(color.to_html(false)) + ']'+str(mvp.points)+ ' Points[/color]!!'
+		#var mvp = Global.player1 if Global.player1.points > Global.player2.points else Global.player2
+		#var color : Color = mvp.player_color
+		#win_desc.text = 'survived a day thanks to [color=#' + str(color.to_html(false)) + ']'+str(mvp.player_label)+'[/color] who scored [color=' + str(color.to_html(false)) + ']'+str(mvp.points)+ ' Points[/color]!!'
+		win_desc.text = 'survived!'
 		var tween = get_tree().create_tween()
 		tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 		tween.tween_property(win,'modulate',Color(1,1,1,1),0.5)

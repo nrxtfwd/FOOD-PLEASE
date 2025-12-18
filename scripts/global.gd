@@ -9,7 +9,7 @@ signal rush_hour
 signal rush_hour_ended
 signal critics_status
 
-var levels_unlocked = 2
+var levels_unlocked = 1
 var bg_music
 var sfx_volume = -15.0
 var player1

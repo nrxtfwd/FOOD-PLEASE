@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cstafv1o6ka5b"]
+[gd_scene load_steps=36 format=3 uid="uid://cstafv1o6ka5b"]
 
 [ext_resource type="Texture2D" uid="uid://bfknagnvvpfux" path="res://assets/heart.png" id="1_nt7q6"]
 [ext_resource type="Script" uid="uid://bxhoy0h1s7cj0" path="res://scenes/lives.gd" id="1_x4jx1"]
@@ -23,10 +23,19 @@
 [ext_resource type="Texture2D" uid="uid://ctejrrglsivf8" path="res://assets/tick.png" id="15_jkdwc"]
 [ext_resource type="Texture2D" uid="uid://cupprprwmo88x" path="res://assets/level3tutorial/image2.png" id="16_sesyt"]
 [ext_resource type="Texture2D" uid="uid://d0e5hakdalatt" path="res://assets/level3tutorial/image3.png" id="17_gglip"]
+[ext_resource type="Shader" uid="uid://crjnmajrnoj2b" path="res://bounce.gdshader" id="18_41akx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wm3ai"]
 shader = ExtResource("4_gdt2y")
 shader_parameter/lod = 2.026000096235
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sesyt"]
+shader = ExtResource("18_41akx")
+shader_parameter/do_abs = false
+shader_parameter/do_quantize = false
+shader_parameter/quantize_to = 1.0
+shader_parameter/sine_amplitude = Vector2(5, 0)
+shader_parameter/sine_speed = Vector2(1.3, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1mc3"]
 border_width_left = 5
@@ -94,6 +103,143 @@ expand_margin_top = 10.0
 expand_margin_right = 10.0
 expand_margin_bottom = 10.0
 
+[sub_resource type="Animation" id="Animation_catpy"]
+resource_name = "work_hour_change"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("35pxmargin/VBoxContainer/Control/work_hour:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.8, 1.4), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_41akx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("35pxmargin/VBoxContainer/Control/work_hour:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("main_menu/menu:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(414, 246.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("main_menu/MarginContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("main_menu/MarginContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("main_menu/menu:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_sesyt"]
+resource_name = "menu_start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("main_menu/menu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1),
+"transitions": PackedFloat32Array(2.2973967, 3.732133, 1.1486987),
+"update": 0,
+"values": [Vector2(414, -246), Vector2(414, 300), Vector2(414, 246.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("main_menu/MarginContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("main_menu/MarginContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.1254902), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("main_menu/menu:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.34),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sesyt"]
+_data = {
+&"RESET": SubResource("Animation_41akx"),
+&"menu_start": SubResource("Animation_sesyt"),
+&"work_hour_change": SubResource("Animation_catpy")
+}
+
 [node name="ui" type="CanvasLayer"]
 
 [node name="Control" type="Control" parent="."]
@@ -121,10 +267,32 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="work_hour" type="Label" parent="Control/35pxmargin/VBoxContainer"]
+[node name="Control" type="ColorRect" parent="Control/35pxmargin/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="work_hour" type="Label" parent="Control/35pxmargin/VBoxContainer/Control"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 80.0
+offset_bottom = 53.0
+pivot_offset = Vector2(40, 24)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.41960785)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 48
+text = "9AM"
+
+[node name="padding" type="Label" parent="Control/35pxmargin/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.41960785)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
 theme_override_font_sizes/font_size = 48
 text = "9AM"
 
@@ -132,6 +300,9 @@ text = "9AM"
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.49411765)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
 theme_override_font_sizes/font_size = 20
 text = "Still 8 more hours..."
 
@@ -145,6 +316,7 @@ theme_override_font_sizes/font_size = 48
 text = "RUSH HOUR IN 80 SECONDS..."
 
 [node name="leaderboard" type="VBoxContainer" parent="Control/35pxmargin"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -179,7 +351,7 @@ size_flags_vertical = 0
 theme_override_font_sizes/font_size = 48
 text = "FOOD CRITICS IN 60 SECONDS..."
 
-[node name="game_over" type="ColorRect" parent="Control" node_paths=PackedStringArray("win", "work_hour_label", "work_hour_status_label", "rush_hour_label", "food_critics", "game_over_desc", "win_desc")]
+[node name="game_over" type="ColorRect" parent="Control" node_paths=PackedStringArray("win", "work_hour_label", "work_hour_status_label", "rush_hour_label", "food_critics", "game_over_desc", "win_desc", "anim_player")]
 process_mode = 3
 modulate = Color(1, 1, 1, 0)
 z_index = 98
@@ -192,7 +364,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("3_yev5y")
 win = NodePath("../win")
-work_hour_label = NodePath("../35pxmargin/VBoxContainer/work_hour")
+work_hour_label = NodePath("../35pxmargin/VBoxContainer/Control/work_hour")
 work_hour_status_label = NodePath("../35pxmargin/VBoxContainer/status")
 rush_hour_label = NodePath("../35pxmargin/VBoxContainer/rush_hour")
 food_critics = NodePath("../35pxmargin/mid_top/food_critics")
@@ -200,6 +372,7 @@ game_over_desc = NodePath("VBoxContainer/title2")
 win_desc = NodePath("../win/VBoxContainer/title2")
 win_sound = ExtResource("5_vdcm2")
 lose_sound = ExtResource("6_6rmj2")
+anim_player = NodePath("../AnimationPlayer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/game_over"]
 layout_mode = 1
@@ -280,7 +453,7 @@ theme_override_font_sizes/font_size = 32
 text = "R to Restart"
 horizontal_alignment = 1
 
-[node name="main_menu" type="ColorRect" parent="Control"]
+[node name="main_menu" type="ColorRect" parent="Control" node_paths=PackedStringArray("anim_player")]
 process_mode = 3
 visible = false
 self_modulate = Color(1, 1, 1, 0.3137255)
@@ -294,6 +467,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("5_wm3ai")
+anim_player = NodePath("../AnimationPlayer")
 
 [node name="level1_tutorial" type="ColorRect" parent="Control/main_menu"]
 visible = false
@@ -634,22 +808,24 @@ text = "Enter to START"
 horizontal_alignment = 1
 
 [node name="menu" type="VBoxContainer" parent="Control/main_menu"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -162.0
+offset_top = -77.5
+offset_right = 162.0
+offset_bottom = 77.50018
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/separation = 50
 
 [node name="title" type="Label" parent="Control/main_menu/menu"]
+material = SubResource("ShaderMaterial_sesyt")
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 25
@@ -666,6 +842,7 @@ text = "Enter to start"
 horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/main_menu"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -906,6 +1083,12 @@ size_flags_vertical = 0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("12_6rmj2")
 stretch_mode = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+process_mode = 3
+libraries = {
+&"": SubResource("AnimationLibrary_sesyt")
+}
 
 [connection signal="enter_game" from="Control/main_menu" to="Control/main_menu/settings" method="_on_main_menu_enter_game"]
 [connection signal="pressed" from="Control/main_menu/MarginContainer/settings" to="Control/main_menu/settings" method="_on_settings_pressed"]

@@ -185,16 +185,6 @@ table_number = 8
 position = Vector2(465, 108)
 player_color = Color(1, 0.37, 0.54849994, 1)
 
-[node name="player2" parent="." instance=ExtResource("6_172wr")]
-position = Vector2(672, 104)
-player_color = Color(0.37, 0.53799987, 1, 1)
-player_label = "P2"
-left = "left1"
-right = "right1"
-up = "up1"
-down = "down1"
-interact = "interact1"
-
 [node name="npc_spawn" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true

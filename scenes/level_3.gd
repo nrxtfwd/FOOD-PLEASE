@@ -77,6 +77,8 @@ func spawn_npc(is_birthday = -1):
 		var npc = NPC.instantiate()
 		if is_birthday != -1:
 			npc.is_birthday = true
+			npc.eaten = false
+			npc.storm_out = false
 			npc.table_number = is_birthday
 		npc.global_position = npc_spawn_pos.global_position+Vector2(n*-50.0,0)
 		add_child.call_deferred(npc)

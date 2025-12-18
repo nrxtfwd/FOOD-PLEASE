@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://chnpqygrmmy6b"]
+[gd_scene load_steps=22 format=3 uid="uid://chnpqygrmmy6b"]
 
 [ext_resource type="Script" uid="uid://bf35p5fhaca51" path="res://scenes/npc.gd" id="1_abqhh"]
 [ext_resource type="Texture2D" uid="uid://drsyh05eukgw1" path="res://assets/prototype_character.png" id="2_abqhh"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://d1wbmny1f1qhr" path="res://assets/anger.png" id="4_7n8xq"]
 [ext_resource type="Texture2D" uid="uid://dh76x7shofcas" path="res://assets/star.png" id="5_4wlns"]
 [ext_resource type="Texture2D" uid="uid://dl1yw0sb38fyf" path="res://assets/radial_light_gradient3.png" id="6_tl2vt"]
+[ext_resource type="Texture2D" uid="uid://dc2g06487evpb" path="res://assets/clock_progress.png" id="8_v4e37"]
+[ext_resource type="Texture2D" uid="uid://buak5yt5dftwg" path="res://assets/clock_over.png" id="9_1h837"]
+[ext_resource type="Texture2D" uid="uid://cr6rw0wukcon0" path="res://assets/clock_under1.png" id="10_gl1un"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("2_abqhh")
@@ -101,7 +104,7 @@ position = Vector2(-0.1999995, 7.152556e-07)
 scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("CapsuleShape2D_hwkja")
 
-[node name="waiting_for_food" type="ProgressBar" parent="."]
+[node name="waiting_for_food2" type="ProgressBar" parent="."]
 visible = false
 offset_left = -9.0
 offset_top = -13.5
@@ -146,7 +149,24 @@ text = "I want more!!"
 horizontal_alignment = 1
 
 [node name="light" type="PointLight2D" parent="dialogue"]
+visible = false
 position = Vector2(206.39998, 7.9999995)
 scale = Vector2(1, 0.5)
 texture = ExtResource("6_tl2vt")
 texture_scale = 0.8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="waiting_for_food" type="TextureProgressBar" parent="."]
+visible = false
+offset_left = -8.0
+offset_top = -25.2
+offset_right = 56.0
+offset_bottom = 38.8
+max_value = 1.0
+step = 0.01
+value = 0.33
+fill_mode = 4
+texture_under = ExtResource("10_gl1un")
+texture_over = ExtResource("9_1h837")
+texture_progress = ExtResource("8_v4e37")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://bhqj3sxcndjmt"]
+[gd_scene load_steps=22 format=4 uid="uid://bhqj3sxcndjmt"]
 
 [ext_resource type="Script" uid="uid://cdhue6jiwuads" path="res://scenes/level.gd" id="1_2y5yt"]
 [ext_resource type="Texture2D" uid="uid://0oxybmfmnoy6" path="res://assets/floorswalls_LRK.png" id="2_2os1m"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://btn8r2nbceeuc" path="res://scenes/player.tscn" id="8_1s4pk"]
 [ext_resource type="PackedScene" uid="uid://cstafv1o6ka5b" path="res://scenes/ui.tscn" id="9_x2xxo"]
 [ext_resource type="AudioStream" uid="uid://dslqjkmy34d34" path="res://music/BgMusic.mp3" id="10_2cbcq"]
+[ext_resource type="Texture2D" uid="uid://dl1yw0sb38fyf" path="res://assets/radial_light_gradient3.png" id="10_2y5yt"]
 
 [sub_resource type="Environment" id="Environment_4mrxx"]
 background_mode = 3
@@ -1455,6 +1456,10 @@ _data = {
 &"fade": SubResource("Animation_4mrxx")
 }
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2y5yt"]
+resource_local_to_scene = true
+polygon = PackedVector2Array(0, 161, 346, 161, 347, 1, 0, 1)
+
 [node name="level_1" type="Node2D" node_paths=PackedStringArray("npc_spawn_pos")]
 script = ExtResource("1_2y5yt")
 max_npcs = 27
@@ -1529,16 +1534,6 @@ table_number = 8
 position = Vector2(465, 108)
 player_color = Color(1, 0.37, 0.54849994, 1)
 
-[node name="player2" parent="." instance=ExtResource("8_1s4pk")]
-position = Vector2(672, 104)
-player_color = Color(0.37, 0.53799987, 1, 1)
-player_label = "P2"
-left = "left1"
-right = "right1"
-up = "up1"
-down = "down1"
-interact = "interact1"
-
 [node name="npc_spawn" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
@@ -1564,6 +1559,43 @@ autostart = true
 stream = ExtResource("10_2cbcq")
 volume_db = -15.0
 parameters/looping = true
+
+[node name="light" type="PointLight2D" parent="."]
+position = Vector2(-54, 193)
+scale = Vector2(0.5, 0.5)
+energy = 2.0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+texture = ExtResource("10_2y5yt")
+texture_scale = 2.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_2y5yt")
+occluder_light_mask = 2
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+position = Vector2(-1, 222)
+occluder = SubResource("OccluderPolygon2D_2y5yt")
+occluder_light_mask = 2
+
+[node name="light2" type="PointLight2D" parent="."]
+position = Vector2(1207, 193)
+scale = Vector2(0.5, 0.5)
+energy = 2.0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+texture = ExtResource("10_2y5yt")
+texture_scale = 2.0
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="."]
+position = Vector2(806, 0)
+occluder = SubResource("OccluderPolygon2D_2y5yt")
+occluder_light_mask = 2
+
+[node name="LightOccluder2D4" type="LightOccluder2D" parent="."]
+position = Vector2(805, 222)
+occluder = SubResource("OccluderPolygon2D_2y5yt")
+occluder_light_mask = 2
 
 [connection signal="timeout" from="npc_spawn" to="." method="_on_npc_spawn_timeout"]
 [connection signal="timeout" from="work_hour" to="." method="_on_work_hour_timeout"]

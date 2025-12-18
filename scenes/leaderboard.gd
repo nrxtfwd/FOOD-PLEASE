@@ -9,7 +9,7 @@ func _ready() -> void:
 	add_child.call_deferred(p1score)
 	p2score = p1score.duplicate()
 	add_child.call_deferred(p2score)
-
-func _process(delta: float) -> void:
-	p1score.text = 'Player 1: ' + str(Global.player1.points)
-	p2score.text = 'Player 2: ' + str(Global.player2.points)
+#
+#func _process(delta: float) -> void:
+	#p1score.text = 'Player 1: ' + str(Global.player1.points)
+	#p2score.text = 'Player 2: ' + str(Global.player2.points)
